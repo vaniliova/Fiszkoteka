@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #007eed;
+  background-image: url('../images/pinstripe-dark.png');
+  font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  color: #00529B;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 30px;
+  font-family: 'Zilla Slab Highlight', cursive;
+}
+
+.nav__lang {
+  padding: 20px;
+}
+
+.nav__lang__flag {
+  width: 70px;
+  height: 50px;
+  padding: 10px;
+}
+
+.main {
+  margin: 0 auto;
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.mainList__lists__defautl {
+
+}
+
+.mainList__lists__default--ul {
+
+}
+
+.mainList__lists__default--li, .mainList__lists__user--li {
+  list-style: none;
+  color: #eaeef2;
+  font-size: 16px;
+  background: #006ECE;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.mainList__lists__default--input, .mainList__lists__user--input{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.main__lists, .main__display{
+  width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.main__lists {
+  border-right: 2px solid #00529B;
+}
+
+.mainList__create {
+  text-align: center;
+}
+
+.main__list__create--btn {
+  background: #00529B;
+  border-radius: 5px;
+  width: 100px;
+  color: #eaeef2;
+  height: 30px;
+  border: 0;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 10px;
+  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  transition: background 0.5s ease;
+}
+
+.main__playBtn {
+  background: #89E224;
+  border-radius: 5px;
+  width: 200px;
+  height: 70px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 70px;
+  margin-top: 40px;
+  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  transition: background 0.5s ease;
+}
+
+.main__playBtn:hover {
+  background: #75C11F;
+}
+
+.main__playBtn--btn {
+  color: #eaeef2;
+  text-decoration: none;
+  text-shadow: 0px 0px 2px #000000;
+}
+
+.mainList {
+
+}
+
+.mainDisplay {
+  background: #006ECE;
+  width: 500px;
+  border-radius: 5px;
+}
+
+.mainDisplay__instructions {
+  padding: 30px;
+  text-align: center;
+  color: #003D72;
+}
+
+.mainDisplay__header {
+  padding: 20px;
+}
+
+.mainDisplay--ol li{
+  padding: 10px;
+  list-style: none;
+}
+
+.mainList__search {
+  margin: 10px;
+}
+
+.mainList__search--input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.mainList__user {
+  color: #eaeef2;
+  font-size: 12px;
+  border-bottom: 1px solid #00529B;
+}
+.mainList__lists__user {
+
+}
+
+.mainList__lists__user--li {
+
+}
+
+.footer {
+  background: #006ECE;
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__info {
+  padding: 30px;
+}
+
+.footer__logo {
+  color: #00529B;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Zilla Slab Highlight', cursive;
+}
+
+.footer__slogan {
+  color: #eaeef2;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.footer__author {
+  color: #00529B;
+  font-size: 25px;
+  text-align: right;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  font-family: 'Sacramento', cursive;
+}
+
+
+.game {
+  background: #006ECE;
+  width: 1000px;
+  height: 500px;
+  border-radius: 5px;
+  margin: auto;
+  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+}

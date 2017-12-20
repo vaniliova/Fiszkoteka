@@ -1,0 +1,196 @@
+{
+  "data": {
+    "home" : [
+      {
+        "titlePL": "DOM",
+        "titleES": "LA CASA",
+        "list": [
+          {
+            "wordPL": "Kuchnia",
+            "wordES": "La cocina"
+          },
+          {
+            "wordPL": "Łazienka",
+            "wordES": "El bano"
+          },
+          {
+            "wordPL": "Sypialnia",
+            "wordES": "El dormitorio"
+          },
+          {
+            "wordPL": "Salon",
+            "wordES": "El salon"
+          },
+          {
+            "wordPL": "Stoł",
+            "wordES": "La mesa"
+          },
+          {
+            "wordPL": "Krzesło",
+            "wordES": "La silla"
+          },
+          {
+            "wordPL": "Okno",
+            "wordES": "La ventana"
+          },
+          {
+            "wordPL": "Obraz",
+            "wordES": "El cuadro"
+          },
+          {
+            "wordPL": "Łożko",
+            "wordES": "La cama"
+          },
+          {
+            "wordPL": "Drzwi",
+            "wordES": "La puerta"
+          }
+        ]
+      }
+    ],
+    "clothes": [
+      {
+        "titlePL": "UBRANIA",
+        "titleES": "LA ROPA",
+        "list": [
+          {
+            "wordPL": "Spodnie",
+            "wordES": "Los pantalones"
+          },
+          {
+            "wordPL": "Koszula",
+            "wordES": "La camisa"
+          },
+          {
+            "wordPL": "T-shirt",
+            "wordES": "La camiseta"
+          },
+          {
+            "wordPL": "Sweter",
+            "wordES": "El jersey"
+          },
+          {
+            "wordPL": "Buty",
+            "wordES": "Los zapatos"
+          },
+          {
+            "wordPL": "Skarpetki",
+            "wordES": "Los calcetines"
+          },
+          {
+            "wordPL": "Pasek",
+            "wordES": "El cinturon"
+          },
+          {
+            "wordPL": "Sukienka",
+            "wordES": "El vestido"
+          },
+          {
+            "wordPL": "Spodniczka",
+            "wordES": "La falda"
+          },
+          {
+            "wordPL": "Marynarka",
+            "wordES": "La chaqueta"
+          }
+        ]
+      }
+    ],
+    "transport": [
+      {
+        "titlePL": "TRANSPORT",
+        "titleES": "EL TRANSPORTE",
+        "list": [
+          {
+            "wordPL": "Samochod",
+            "wordES": "El coche"
+          },
+          {
+            "wordPL": "Rower",
+            "wordES": "La bicicleta"
+          },
+          {
+            "wordPL": "Samolot",
+            "wordES": "El avion"
+          },
+          {
+            "wordPL": "Statek",
+            "wordES": "El barco"
+          },
+          {
+            "wordPL": "Autobus",
+            "wordES": "El autobus"
+          },
+          {
+            "wordPL": "Pociąg",
+            "wordES": "El tram"
+          },
+          {
+            "wordPL": "Tramwaj",
+            "wordES": "La tramvia"
+          },
+          {
+            "wordPL": "Hulajnoga",
+            "wordES": "El patinete"
+          },
+          {
+            "wordPL": "Deskorolka",
+            "wordES": "El monopatin"
+          },
+          {
+            "wordPL": "Metro",
+            "wordES": "El metro"
+          }
+        ]
+      }
+    ],
+    "weather": [
+      {
+        "titlePL": "TRANSPORT",
+        "titleES": "EL TRANSPORTE",
+        "list": [
+          {
+            "wordPL": "Samochod",
+            "wordES": "El coche"
+          },
+          {
+            "wordPL": "Rower",
+            "wordES": "La bicicleta"
+          },
+          {
+            "wordPL": "Samolot",
+            "wordES": "El avion"
+          },
+          {
+            "wordPL": "Statek",
+            "wordES": "El barco"
+          },
+          {
+            "wordPL": "Autobus",
+            "wordES": "El autobus"
+          },
+          {
+            "wordPL": "Pociąg",
+            "wordES": "El tram"
+          },
+          {
+            "wordPL": "Tramwaj",
+            "wordES": "La tramvia"
+          },
+          {
+            "wordPL": "Hulajnoga",
+            "wordES": "El patinete"
+          },
+          {
+            "wordPL": "Deskorolka",
+            "wordES": "El monopatin"
+          },
+          {
+            "wordPL": "Metro",
+            "wordES": "El metro"
+          }
+        ]
+      }
+    ]
+  }
+}
