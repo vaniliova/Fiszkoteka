@@ -9,19 +9,17 @@ import {Link} from 'react-router';
 class Main extends React.Component {
 
   render(){
+    console.log(this.props, "Main");
     return(
       <div className="app">
           <Nav />
         <div className="main">
-          {/* listy defaultowe */}
           <div className="main__lists">
-            <MainList />
+            <MainList add={this.props.add} remove={this.props.remove} data={this.props.data}/>
           </div>
-          {/* listy użytkowników */}
           <div className="main__display">
             <MainDisplay />
           </div>
-          {/* Przycisk graj */}
           <div className="main__playBtn">
             <Link to="/game" className="main__playBtn--btn">GRAJ</Link>
           </div>

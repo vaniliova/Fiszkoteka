@@ -4,15 +4,15 @@ import MainListsCardsDefault from '../components/MainListsCardsDefault.jsx';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 
-
 class Game extends React.Component {
   state = {
-    data: null,
     answer: "",
     time: 60000,
     score: 0,
     try: 0,
+    scoreStatus: "",
   }
+  randomWord = 0
 
 //inicjalizator właściwości
   checkAnswer = () => {
@@ -58,6 +58,7 @@ class Game extends React.Component {
       }
     }
   }
+
   compareValue = (e) => {
     this.setState({
       answer: e.currentTarget.value,
@@ -66,62 +67,78 @@ class Game extends React.Component {
 
   randIndex() {
     this.randomWord = Math.floor(Math.random() * (this.words.length));
-    console.log(this.randomWord);
     this.setState({
       answer: "",
     });
   }
 
   componentDidMount() {
-  fetch('http://localhost:3000/data', {
-        method : 'GET',
-        headers : {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then( resp => resp.json())
-      .then( data => {
-      console.log( data );
-
-      this.words = [];
-      for (let prop in data) {
-        data[prop].forEach((e,i) => {
-          e.list.forEach((e2, i2) => {
-            this.words.push(e2);
-          })
-        })
-      }
-      //Wywołanie funkcji losującej
-      this.randIndex();
-      //Zmiana data na wylosowaną wartosc
-      this.setState({
-        data: data,
-      });
-    });
-
     this.time = setInterval(() => {
       if (this.state.time > 0) {
         this.setState({
-          time: this.state.time - 100,
+          time: this.state.time - 1000,
         })
       }else {
 
       }
-    }, 100);
+    }, 1000);
   }
-
+   componentWillUnmount() {
+     clearInterval(this.time);
+   }
   render(){
-    if (this.state.data === null) {
+    // console.log(this.props.data, "Game");
+    // console.log(this.props.checkedLists);
+    if (this.props.data === null) {
       return <p className="loading">Loading...</p>;
     }
+
+    this.words = [];
+    for (let prop in this.props.data) {
+      if (this.props.checkedLists.indexOf(prop) >= 0) {
+        this.props.data[prop].forEach((e,i) => {
+
+          e.list.forEach((e2, i2) => {
+            console.log(prop);
+            this.words.push(e2);
+          })
+        })
+      }
+
+    }
+
+    console.log(this.words, this.props.checkedLists);
+
+    //Wywołanie funkcji losującej
+    // if (typeof this.randomWord === 'undefined') {
+    //       this.randIndex();
+    // }
+
+    if (this.state.score >= 10) {
+      this.setState({
+        scoreStatus: "Brawo! Jesteś geniuszem językowym :)"
+      })
+    }else if (this.state.score >= 5) {
+      this.setState({
+        scoreStatus: "Musisz się jeszcze trochę poduczyc..."
+      })
+    }else {
+      this.setState({
+        scoreStatus: "Weź sie za naukę człowieku!"
+      })
+    }
+
     if ((this.state.score <= 0 && this.state.try > 0) || this.state.time <= 0 ) {
       return (
-        <div className="gameOver">
-          <div className="gameOver__info">GAME OVER!</div>
-          <p className="gameOver__score">Twój wynik: {this.state.score}</p>
+        <div className="app">
+          <Nav />
+          <div className="gameOver">
+            <div className="gameOver__info">GAME OVER!</div>
+            <p className="gameOver__score">Twój wynik: {this.state.score}</p>
+            <p>{this.state.scoreStatus}</p>
+          </div>
+          <Footer />
         </div>
-
       )
     }
     return(

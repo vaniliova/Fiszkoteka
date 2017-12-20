@@ -11,11 +11,12 @@ class MainList extends React.Component {
     checked: false
   }
   render(){
+    console.log(this.props.data, "MainList");
     return(
       <div className="mainList">
         <Search />
         <div className="mainList__lists">
-          <Default />
+          <Default add={this.props.add} remove={this.props.remove} data={this.props.data}/>
           <p className="mainList__user">Fiszki użytkowników</p>
           <User />
         </div>

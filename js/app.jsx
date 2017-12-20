@@ -11,11 +11,49 @@ import { Router,
 } from 'react-router';
 
 class App extends React.Component{
+  state={
+    data: null,
+    listDef: [],
+  }
+
+  addItemToList = (name) => {
+    const list = this.state.listDef.slice();
+    list.push(name);
+    this.setState({
+      listDef: list,
+    })
+  }
+  removeItemFromList = (name) => {
+    const list = this.state.listDef.filter((e) => {
+      return e === name ? false : true;
+    })
+    this.setState({
+      listDef: list,
+    })
+  }
+
+  componentDidMount() {
+  fetch('http://localhost:3000/data', {
+        method : 'GET',
+        headers : {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then( resp => resp.json())
+      .then( data => {
+        this.setState({
+          data: data,
+        })
+      console.log( data );
+    });
+  }
   render(){
+    console.log(this.state.listDef);
     return(
         <Router history={hashHistory}>
-          <Route path='/' component={Main} />
-          <Route path='/game' component={Game} />
+          <Route path='/' component={(props) => <Main add={this.addItemToList} remove={this.removeItemFromList} data={this.state.data} {...props} /> } />
+          <Route path='/game' component={(props) => <Game checkedLists={this.state.listDef} data={this.state.data} {...props} />} />
         </Router>
     )
   }
