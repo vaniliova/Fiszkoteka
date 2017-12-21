@@ -13,18 +13,13 @@ class Game extends React.Component {
     scoreStatus: "Weź sie za naukę człowieku!",
   }
 
-  // randomWord = 0
-
-//inicjalizator właściwości
   checkAnswer = () => {
-    console.log(this.state.answer);
     let bg = document.querySelector('body');
     let bgGame = document.querySelector('.game')
     let footer = document.querySelector('.footer')
 
     if (this.state.answer !== "" ) {
       if (this.state.answer.toLowerCase() === this.words[this.randomWord].wordES.toLowerCase()) {
-        //Zmiana styli
         bg.style.background = "#89E224";
         footer.style.background = "#89E224";
         bg.style.backgroundImage = "url('../images/pinstripe-dark.png')";
@@ -40,7 +35,6 @@ class Game extends React.Component {
           try: this.state.try + 1,
         })
       }else {
-        //Zmiana styli
         bg.style.background = "#f41823";
         footer.style.background = "#f41823";
         bg.style.backgroundImage = "url('../images/pinstripe-dark.png')";
@@ -49,11 +43,12 @@ class Game extends React.Component {
            bg.style.background = "";
            footer.style.background = "";
            bgGame.style.background = "";
-         }, 400);
-         this.setState({
-          score: this.state.score - 1,
-          try: this.state.try + 1,
-         })
+        }, 400);
+
+        this.setState({
+        score: this.state.score - 1,
+        try: this.state.try + 1,
+        })
       }
     }
 
@@ -84,6 +79,7 @@ class Game extends React.Component {
       answer: "",
     });
   }
+
   componentWillUpdate() {
     if (this.props.data !== null && typeof this.randomWord === 'undefined') {
       this.words = [];
@@ -99,6 +95,7 @@ class Game extends React.Component {
       this.randIndex();
     }
   }
+
   componentDidMount() {
     this.time = setInterval(() => {
       if (this.state.time > 0) {
@@ -110,23 +107,15 @@ class Game extends React.Component {
       }
     }, 1000);
   }
-   componentWillUnmount() {
-     clearInterval(this.time);
-   }
+
+  componentWillUnmount() {
+    clearInterval(this.time);
+  }
+
   render(){
     if (this.props.data === null || typeof this.randomWord === 'undefined') {
       return <p className="loading">Loading...</p>;
     }
-
-
-
-
-    //Wywołanie funkcji losującej
-    // if (typeof this.randomWord === 'undefined') {
-    //
-    // }
-
-
 
     if ((this.state.score <= 0 && this.state.try > 0) || this.state.time <= 0 ) {
       return (
@@ -143,7 +132,7 @@ class Game extends React.Component {
     }
     return(
       <div className="app">
-          <Nav />
+        <Nav />
         <div className="game">
           <div className="game__info">
             <span className="game__time">Time: {Math.floor(this.state.time / 1000)} s </span>

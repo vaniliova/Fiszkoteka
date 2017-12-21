@@ -15,11 +15,12 @@ class MainListsCardsDefault extends React.Component {
     if (this.props.data === null) {
       return <p>Loading...</p>;
     }
-    console.log(this.props);
+
     const list = [];
     let counter = 0;
     for (let prop in this.props.data) {
-      let item = (<li key={counter++} className="mainList__lists__default--li"><input checked={this.props.checkedLists.indexOf(prop) >= 0 ? true : false } data-name={prop} onChange={this.handleChange} className="mainList__lists__default--input" type="checkbox"/> {this.props.data[prop][0].titlePL} - {this.props.data[prop][0].titleES}</li>)
+      let item = (<li key={counter++} className="mainList__lists__default--li"><input checked={this.props.checkedLists.indexOf(prop) >= 0 ? true : false } data-name={prop} onChange={this.handleChange} className="mainList__lists__default--input" type="checkbox"/>
+      {this.props.data[prop][0].titlePL} <sub className="mainList__lists__default--sup">{this.props.data[prop][0].titleES}</sub></li>)
       list.push(item)
     }
 

@@ -7,12 +7,10 @@ import Footer from '../components/Footer.jsx';
 import {Link} from 'react-router';
 
 class Main extends React.Component {
-
   render(){
-
     return(
       <div className="app">
-          <Nav />
+        <Nav />
         <div className="main">
           <div className="main__lists">
             <MainList checkedLists={this.props.checkedLists} add={this.props.add} remove={this.props.remove} data={this.props.data}/>

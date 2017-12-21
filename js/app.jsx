@@ -23,6 +23,7 @@ class App extends React.Component{
       listDef: list,
     })
   }
+
   removeItemFromList = (name) => {
     const list = this.state.listDef.filter((e) => {
       return e === name ? false : true;
@@ -47,6 +48,7 @@ class App extends React.Component{
         })
     });
   }
+
   render(){
     if (this.state.data === null) {
       return null;
@@ -61,8 +63,8 @@ class App extends React.Component{
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    ReactDOM.render(
-        <App />,
-        document.getElementById('app')
-    );
+  ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+  );
 });

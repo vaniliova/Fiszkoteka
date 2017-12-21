@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import MainList from '../components/MainLists.jsx';
 
 class MainListsSearch extends React.Component {
-
   render(){
     return(
       <div className="mainList__search">

@@ -29,37 +29,38 @@ body {
 
 @keyframes swing
 {
-    15%
-    {
-        -webkit-transform: rotate(5deg);
-        transform: rotate(5deg);
-    }
-    30%
-    {
-        -webkit-transform: rotate(-5deg);
-        transform: rotate(-5deg);
-    }
-    50%
-    {
-        -webkit-transform: rotate(3deg);
-        transform: rotate(3deg);
-    }
-    65%
-    {
-        -webkit-transform: rotate(-3deg);
-        transform: rotate(-3deg);
-    }
-    80%
-    {
-        -webkit-transform: rotate(2deg);
-        transform: rotate(2deg);
-    }
-    100%
-    {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
+  15%
+  {
+      -webkit-transform: rotate(5deg);
+      transform: rotate(5deg);
+  }
+  30%
+  {
+      -webkit-transform: rotate(-5deg);
+      transform: rotate(-5deg);
+  }
+  50%
+  {
+      -webkit-transform: rotate(3deg);
+      transform: rotate(3deg);
+  }
+  65%
+  {
+      -webkit-transform: rotate(-3deg);
+      transform: rotate(-3deg);
+  }
+  80%
+  {
+      -webkit-transform: rotate(2deg);
+      transform: rotate(2deg);
+  }
+  100%
+  {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
 }
+
 .nav__logo {
   color: #00529B;
   font-size: 50px;
@@ -96,51 +97,48 @@ body {
 
 }
 
-.mainList__lists__default--li, .mainList__lists__user--li {
+.mainList__lists__default--li {
   list-style: none;
   color: #eaeef2;
-  font-size: 16px;
+  font-size: 14px;
+  width: 270px;
   background: #006ECE;
-  margin: 5px;
-  padding: 10px;
+  margin: 5px auto;
+  padding: 5px;
   border-radius: 5px;
 }
 
-.mainList__lists__default--input, .mainList__lists__user--input{
+.mainList__lists__default--li:hover {
+  background: #0060B5;
+}
+
+.mainList__lists__default--input {
   width: 20px;
   height: 20px;
   margin-right: 10px;
+}
+
+.mainList__lists__default--sup {
+  color: #003D72;
 }
 
 .main__lists, .main__display{
   width: 600px;
   display: flex;
   justify-content: center;
+  height: 440px;
+
 }
 
 .main__lists {
   border-right: 2px solid #00529B;
 }
 
-.mainList__create {
-  text-align: center;
-}
-
-.main__list__create--btn {
-  background: #00529B;
-  border-radius: 5px;
-  width: 100px;
-  color: #eaeef2;
-  height: 30px;
-  border: 0;
-  font-size: 14px;
-  text-align: center;
-  line-height: 30px;
-  margin-top: 10px;
-  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  transition: background 0.5s ease;
+.mainList__lists__category {
+  text-align:center;
+  color: #00529B;
+  font-weight: 800;
+  padding: 15px;
 }
 
 .main__playBtn {
@@ -168,13 +166,10 @@ body {
   text-shadow: 0px 0px 2px #000000;
 }
 
-.mainList {
-
-}
-
-.mainDisplay {
-  background: #006ECE;
-  width: 500px;
+.mainList, .mainDisplay {
+  background: rgba(0,82,155, 0.1);
+  box-shadow: inset 0px 10px 81px -1px rgba(0,110,206,1);
+  width: 450px;
   border-radius: 5px;
 }
 
@@ -188,10 +183,10 @@ body {
 
 .mainDisplay__header {
   padding: 20px;
+  font-size: 18px;
 }
 
 .mainDisplay__table {
-  border: 1px solid #00529B;
   width: 400px;
   margin: 0 auto;
   text-align: left;
@@ -201,10 +196,6 @@ body {
 
 .mainDisplay--ol {
   list-style: none;
-}
-
-.mainList__search {
-  margin: 10px;
 }
 
 .mainList__search--input {
@@ -266,14 +257,11 @@ body {
 }
 
 .game {
-  background: #006ECE;
+  background: rgba(0,82,155, 0.3);
   width: 1000px;
   height: 500px;
   border-radius: 5px;
   margin: auto;
-  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
 }
 
 .gameOver {
