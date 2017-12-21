@@ -10,9 +10,10 @@ class Game extends React.Component {
     time: 60000,
     score: 0,
     try: 0,
-    scoreStatus: "",
+    scoreStatus: "Weź sie za naukę człowieku!",
   }
-  randomWord = 0
+
+  // randomWord = 0
 
 //inicjalizator właściwości
   checkAnswer = () => {
@@ -23,7 +24,6 @@ class Game extends React.Component {
 
     if (this.state.answer !== "" ) {
       if (this.state.answer.toLowerCase() === this.words[this.randomWord].wordES.toLowerCase()) {
-        console.log("Poprawna odpowiedź");
         //Zmiana styli
         bg.style.background = "#89E224";
         footer.style.background = "#89E224";
@@ -40,7 +40,6 @@ class Game extends React.Component {
           try: this.state.try + 1,
         })
       }else {
-        console.log("Błędna odpowiedź");
         //Zmiana styli
         bg.style.background = "#f41823";
         footer.style.background = "#f41823";
@@ -57,6 +56,20 @@ class Game extends React.Component {
          })
       }
     }
+
+    if (this.state.score >= 10) {
+      this.setState({
+        scoreStatus: "Brawo! Jesteś geniuszem językowym :)"
+      })
+    }else if (this.state.score >= 5) {
+      this.setState({
+        scoreStatus: "Musisz się jeszcze trochę poduczyc..."
+      })
+    }else {
+      this.setState({
+        scoreStatus: "Weź sie za naukę człowieku!"
+      })
+    }
   }
 
   compareValue = (e) => {
@@ -71,7 +84,21 @@ class Game extends React.Component {
       answer: "",
     });
   }
-
+  componentWillUpdate() {
+    if (this.props.data !== null && typeof this.randomWord === 'undefined') {
+      this.words = [];
+      for (let prop in this.props.data) {
+        if (this.props.checkedLists.indexOf(prop) >= 0) {
+          this.props.data[prop].forEach((e,i) => {
+            e.list.forEach((e2, i2) => {
+              this.words.push(e2);
+            })
+          })
+        }
+      }
+      this.randIndex();
+    }
+  }
   componentDidMount() {
     this.time = setInterval(() => {
       if (this.state.time > 0) {
@@ -87,46 +114,19 @@ class Game extends React.Component {
      clearInterval(this.time);
    }
   render(){
-    // console.log(this.props.data, "Game");
-    // console.log(this.props.checkedLists);
-    if (this.props.data === null) {
+    if (this.props.data === null || typeof this.randomWord === 'undefined') {
       return <p className="loading">Loading...</p>;
     }
 
-    this.words = [];
-    for (let prop in this.props.data) {
-      if (this.props.checkedLists.indexOf(prop) >= 0) {
-        this.props.data[prop].forEach((e,i) => {
 
-          e.list.forEach((e2, i2) => {
-            console.log(prop);
-            this.words.push(e2);
-          })
-        })
-      }
 
-    }
-
-    console.log(this.words, this.props.checkedLists);
 
     //Wywołanie funkcji losującej
     // if (typeof this.randomWord === 'undefined') {
-    //       this.randIndex();
+    //
     // }
 
-    if (this.state.score >= 10) {
-      this.setState({
-        scoreStatus: "Brawo! Jesteś geniuszem językowym :)"
-      })
-    }else if (this.state.score >= 5) {
-      this.setState({
-        scoreStatus: "Musisz się jeszcze trochę poduczyc..."
-      })
-    }else {
-      this.setState({
-        scoreStatus: "Weź sie za naukę człowieku!"
-      })
-    }
+
 
     if ((this.state.score <= 0 && this.state.try > 0) || this.state.time <= 0 ) {
       return (
@@ -135,7 +135,7 @@ class Game extends React.Component {
           <div className="gameOver">
             <div className="gameOver__info">GAME OVER!</div>
             <p className="gameOver__score">Twój wynik: {this.state.score}</p>
-            <p>{this.state.scoreStatus}</p>
+            <p className="gameOver__opinion">{this.state.scoreStatus}</p>
           </div>
           <Footer />
         </div>

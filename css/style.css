@@ -27,12 +27,47 @@ body {
   justify-content: space-between;
 }
 
+@keyframes swing
+{
+    15%
+    {
+        -webkit-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    30%
+    {
+        -webkit-transform: rotate(-5deg);
+        transform: rotate(-5deg);
+    }
+    50%
+    {
+        -webkit-transform: rotate(3deg);
+        transform: rotate(3deg);
+    }
+    65%
+    {
+        -webkit-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+    80%
+    {
+        -webkit-transform: rotate(2deg);
+        transform: rotate(2deg);
+    }
+    100%
+    {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
 .nav__logo {
   color: #00529B;
   font-size: 50px;
   font-weight: bold;
   padding: 30px;
   font-family: 'Zilla Slab Highlight', cursive;
+  text-decoration: none;
+  animation: swing 1s linear alternate;
 }
 
 .nav__lang {
@@ -147,14 +182,24 @@ body {
   padding: 30px;
   text-align: center;
   color: #003D72;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .mainDisplay__header {
   padding: 20px;
 }
 
-.mainDisplay--ol li{
-  padding: 10px;
+.mainDisplay__table {
+  border: 1px solid #00529B;
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 80px;
+  height: 300px;
+}
+
+.mainDisplay--ol {
   list-style: none;
 }
 
@@ -166,7 +211,12 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border-radius: 5px;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  color: #eaeef2;
+  border-bottom: 2px solid #00529B;
+  outline: 0;
 }
 
 .mainList__user {
@@ -239,14 +289,14 @@ body {
 
 .gameOver__info {
   text-align: center;
-  padding: 100px;
+  padding: 70px;
   font-size: 70px;
   color: #eaeef2;
 }
 
-.gameOver__score {
+.gameOver__score, .gameOver__opinion {
   text-align: center;
-  padding: 100px;
+  padding: 30px;
   font-size: 30px;
   color: #eaeef2;
 }
@@ -268,7 +318,11 @@ body {
 .game__random__input {
   width: 300px;
   height: 60px;
-  border-radius: 5px;
+  border: 0;
+  background: transparent;
+  text-align: center;
+  color: #eaeef2;
+  border-bottom: 2px solid #00529B;
   padding: 10px;
   font-size: 18px;
   outline: 0;

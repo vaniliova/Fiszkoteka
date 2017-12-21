@@ -4,8 +4,6 @@ import MainList from '../components/MainLists.jsx';
 
 class MainListsCardsDefault extends React.Component {
   handleChange = (e) => {
-    console.log(e.currentTarget.checked);
-    console.log(e.currentTarget.dataset.name);
     if (e.currentTarget.checked) {
       this.props.add(e.currentTarget.dataset.name);
     }else {
@@ -13,17 +11,15 @@ class MainListsCardsDefault extends React.Component {
     }
   }
   render(){
-    console.log(this.props.add, this.props.remove, "default");
-
     //Sprawdza czy fetch zwraca null
     if (this.props.data === null) {
       return <p>Loading...</p>;
     }
-
+    console.log(this.props);
     const list = [];
     let counter = 0;
     for (let prop in this.props.data) {
-      let item = (<li key={counter++} className="mainList__lists__default--li"><input data-name={prop} onChange={this.handleChange} className="mainList__lists__default--input" type="checkbox"/> {prop}</li>)
+      let item = (<li key={counter++} className="mainList__lists__default--li"><input checked={this.props.checkedLists.indexOf(prop) >= 0 ? true : false } data-name={prop} onChange={this.handleChange} className="mainList__lists__default--input" type="checkbox"/> {this.props.data[prop][0].titlePL} - {this.props.data[prop][0].titleES}</li>)
       list.push(item)
     }
 

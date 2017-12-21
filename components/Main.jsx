@@ -9,19 +9,19 @@ import {Link} from 'react-router';
 class Main extends React.Component {
 
   render(){
-    console.log(this.props, "Main");
+
     return(
       <div className="app">
           <Nav />
         <div className="main">
           <div className="main__lists">
-            <MainList add={this.props.add} remove={this.props.remove} data={this.props.data}/>
+            <MainList checkedLists={this.props.checkedLists} add={this.props.add} remove={this.props.remove} data={this.props.data}/>
           </div>
           <div className="main__display">
-            <MainDisplay />
+            <MainDisplay checkedLists={this.props.checkedLists} data={this.props.data} />
           </div>
           <div className="main__playBtn">
-            <Link to="/game" className="main__playBtn--btn">GRAJ</Link>
+            {this.props.checkedLists.length === 0 ? <span className="main__playBtn--btn">GRAJ</span> : <Link to="/game" className="main__playBtn--btn">GRAJ</Link>}
           </div>
         </div>
         <Footer />

@@ -4234,7 +4234,7 @@ var MainList = function (_React$Component) {
   _createClass(MainList, [{
     key: 'render',
     value: function render() {
-      console.log(this.props.data, "MainList");
+      console.log(this.props, "MainList");
       return _react2.default.createElement(
         'div',
         { className: 'mainList' },
@@ -4242,7 +4242,7 @@ var MainList = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'mainList__lists' },
-          _react2.default.createElement(_MainListsCardsDefault2.default, { add: this.props.add, remove: this.props.remove, data: this.props.data }),
+          _react2.default.createElement(_MainListsCardsDefault2.default, { checkedLists: this.props.checkedLists, add: this.props.add, remove: this.props.remove, data: this.props.data }),
           _react2.default.createElement(
             'p',
             { className: 'mainList__user' },
@@ -11370,8 +11370,6 @@ var MainListsCardsDefault = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MainListsCardsDefault.__proto__ || Object.getPrototypeOf(MainListsCardsDefault)).call.apply(_ref, [this].concat(args))), _this), _this.handleChange = function (e) {
-      console.log(e.currentTarget.checked);
-      console.log(e.currentTarget.dataset.name);
       if (e.currentTarget.checked) {
         _this.props.add(e.currentTarget.dataset.name);
       } else {
@@ -11383,8 +11381,6 @@ var MainListsCardsDefault = function (_React$Component) {
   _createClass(MainListsCardsDefault, [{
     key: 'render',
     value: function render() {
-      console.log(this.props.add, this.props.remove, "default");
-
       //Sprawdza czy fetch zwraca null
       if (this.props.data === null) {
         return _react2.default.createElement(
@@ -11393,16 +11389,18 @@ var MainListsCardsDefault = function (_React$Component) {
           'Loading...'
         );
       }
-
+      console.log(this.props);
       var list = [];
       var counter = 0;
       for (var prop in this.props.data) {
         var item = _react2.default.createElement(
           'li',
           { key: counter++, className: 'mainList__lists__default--li' },
-          _react2.default.createElement('input', { 'data-name': prop, onChange: this.handleChange, className: 'mainList__lists__default--input', type: 'checkbox' }),
+          _react2.default.createElement('input', { checked: this.props.checkedLists.indexOf(prop) >= 0 ? true : false, 'data-name': prop, onChange: this.handleChange, className: 'mainList__lists__default--input', type: 'checkbox' }),
           ' ',
-          prop
+          this.props.data[prop][0].titlePL,
+          ' - ',
+          this.props.data[prop][0].titleES
         );
         list.push(item);
       }
@@ -11478,7 +11476,6 @@ var Nav = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'nav__lang' },
-          _react2.default.createElement('img', { className: 'nav__lang__flag', src: 'images/england.png', alt: 'flagGB' }),
           _react2.default.createElement('img', { className: 'nav__lang__flag', src: 'images/spain.jpg', alt: 'flagES' })
         )
       );
@@ -13079,7 +13076,6 @@ var App = function (_React$Component) {
         _this2.setState({
           data: data
         });
-        console.log(data);
       });
     }
   }, {
@@ -13087,12 +13083,14 @@ var App = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this.state.listDef);
+      if (this.state.data === null) {
+        return null;
+      }
       return _react2.default.createElement(
         _reactRouter.Router,
         { history: _reactRouter.hashHistory },
         _react2.default.createElement(_reactRouter.Route, { path: '/', component: function component(props) {
-            return _react2.default.createElement(_Main2.default, _extends({ add: _this3.addItemToList, remove: _this3.removeItemFromList, data: _this3.state.data }, props));
+            return _react2.default.createElement(_Main2.default, _extends({ checkedLists: _this3.state.listDef, add: _this3.addItemToList, remove: _this3.removeItemFromList, data: _this3.state.data }, props));
           } }),
         _react2.default.createElement(_reactRouter.Route, { path: '/game', component: function component(props) {
             return _react2.default.createElement(_Game2.default, _extends({ checkedLists: _this3.state.listDef, data: _this3.state.data }, props));
@@ -25620,7 +25618,7 @@ var Main = function (_React$Component) {
   _createClass(Main, [{
     key: 'render',
     value: function render() {
-      console.log(this.props, "Main");
+
       return _react2.default.createElement(
         'div',
         { className: 'app' },
@@ -25631,17 +25629,21 @@ var Main = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'main__lists' },
-            _react2.default.createElement(_MainLists2.default, { add: this.props.add, remove: this.props.remove, data: this.props.data })
+            _react2.default.createElement(_MainLists2.default, { checkedLists: this.props.checkedLists, add: this.props.add, remove: this.props.remove, data: this.props.data })
           ),
           _react2.default.createElement(
             'div',
             { className: 'main__display' },
-            _react2.default.createElement(_MainDisplay2.default, null)
+            _react2.default.createElement(_MainDisplay2.default, { checkedLists: this.props.checkedLists, data: this.props.data })
           ),
           _react2.default.createElement(
             'div',
             { className: 'main__playBtn' },
-            _react2.default.createElement(
+            this.props.checkedLists.length === 0 ? _react2.default.createElement(
+              'span',
+              { className: 'main__playBtn--btn' },
+              'GRAJ'
+            ) : _react2.default.createElement(
               _reactRouter.Link,
               { to: '/game', className: 'main__playBtn--btn' },
               'GRAJ'
@@ -25783,8 +25785,6 @@ var MainListsCardsUser = function (_React$Component) {
 
     value: function render() {
       //Sprawdza czy fetch zwraca null
-
-
       return _react2.default.createElement(
         'div',
         { className: 'mainList__lists__user' },
@@ -25795,7 +25795,7 @@ var MainListsCardsUser = function (_React$Component) {
             'li',
             { className: 'mainList__lists__user--li' },
             _react2.default.createElement('input', { className: 'mainList__lists__default--input', type: 'checkbox' }),
-            'p'
+            'Under construction'
           )
         )
       );
@@ -25899,6 +25899,10 @@ var _MainDisplayInstructions = __webpack_require__(225);
 
 var _MainDisplayInstructions2 = _interopRequireDefault(_MainDisplayInstructions);
 
+var _MainDisplayList = __webpack_require__(252);
+
+var _MainDisplayList2 = _interopRequireDefault(_MainDisplayList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25919,10 +25923,11 @@ var MainDisplay = function (_React$Component) {
   _createClass(MainDisplay, [{
     key: 'render',
     value: function render() {
+
       return _react2.default.createElement(
         'div',
         { className: 'mainDisplay' },
-        _react2.default.createElement(_MainDisplayInstructions2.default, null)
+        this.props.checkedLists.length === 0 ? _react2.default.createElement(_MainDisplayInstructions2.default, null) : _react2.default.createElement(_MainDisplayList2.default, { checkedLists: this.props.checkedLists, data: this.props.data })
       );
     }
   }]);
@@ -25997,7 +26002,7 @@ var MainDisplayInstructions = function (_React$Component) {
           _react2.default.createElement(
             'li',
             null,
-            '3. Zaznacz kilka list naraz by uczyc si\u0119 wiecej!'
+            '3. Graj!'
           )
         )
       );
@@ -28300,8 +28305,12 @@ var Game = function (_React$Component) {
       time: 60000,
       score: 0,
       try: 0,
-      scoreStatus: ""
-    }, _this.randomWord = 0, _this.checkAnswer = function () {
+      scoreStatus: "Weź sie za naukę człowieku!"
+
+      // randomWord = 0
+
+      //inicjalizator właściwości
+    }, _this.checkAnswer = function () {
       console.log(_this.state.answer);
       var bg = document.querySelector('body');
       var bgGame = document.querySelector('.game');
@@ -28309,7 +28318,6 @@ var Game = function (_React$Component) {
 
       if (_this.state.answer !== "") {
         if (_this.state.answer.toLowerCase() === _this.words[_this.randomWord].wordES.toLowerCase()) {
-          console.log("Poprawna odpowiedź");
           //Zmiana styli
           bg.style.background = "#89E224";
           footer.style.background = "#89E224";
@@ -28326,7 +28334,6 @@ var Game = function (_React$Component) {
             try: _this.state.try + 1
           });
         } else {
-          console.log("Błędna odpowiedź");
           //Zmiana styli
           bg.style.background = "#f41823";
           footer.style.background = "#f41823";
@@ -28343,15 +28350,26 @@ var Game = function (_React$Component) {
           });
         }
       }
+
+      if (_this.state.score >= 10) {
+        _this.setState({
+          scoreStatus: "Brawo! Jesteś geniuszem językowym :)"
+        });
+      } else if (_this.state.score >= 5) {
+        _this.setState({
+          scoreStatus: "Musisz się jeszcze trochę poduczyc..."
+        });
+      } else {
+        _this.setState({
+          scoreStatus: "Weź sie za naukę człowieku!"
+        });
+      }
     }, _this.compareValue = function (e) {
       _this.setState({
         answer: e.currentTarget.value
       });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
-
-  //inicjalizator właściwości
-
 
   _createClass(Game, [{
     key: 'randIndex',
@@ -28362,14 +28380,33 @@ var Game = function (_React$Component) {
       });
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate() {
       var _this2 = this;
 
+      if (this.props.data !== null && typeof this.randomWord === 'undefined') {
+        this.words = [];
+        for (var prop in this.props.data) {
+          if (this.props.checkedLists.indexOf(prop) >= 0) {
+            this.props.data[prop].forEach(function (e, i) {
+              e.list.forEach(function (e2, i2) {
+                _this2.words.push(e2);
+              });
+            });
+          }
+        }
+        this.randIndex();
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this3 = this;
+
       this.time = setInterval(function () {
-        if (_this2.state.time > 0) {
-          _this2.setState({
-            time: _this2.state.time - 1000
+        if (_this3.state.time > 0) {
+          _this3.setState({
+            time: _this3.state.time - 1000
           });
         } else {}
       }, 1000);
@@ -28382,11 +28419,7 @@ var Game = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
-      // console.log(this.props.data, "Game");
-      // console.log(this.props.checkedLists);
-      if (this.props.data === null) {
+      if (this.props.data === null || typeof this.randomWord === 'undefined') {
         return _react2.default.createElement(
           'p',
           { className: 'loading' },
@@ -28394,44 +28427,11 @@ var Game = function (_React$Component) {
         );
       }
 
-      this.words = [];
-
-      var _loop = function _loop(prop) {
-        if (_this3.props.checkedLists.indexOf(prop) >= 0) {
-          _this3.props.data[prop].forEach(function (e, i) {
-
-            e.list.forEach(function (e2, i2) {
-              console.log(prop);
-              _this3.words.push(e2);
-            });
-          });
-        }
-      };
-
-      for (var prop in this.props.data) {
-        _loop(prop);
-      }
-
-      console.log(this.words, this.props.checkedLists);
-
       //Wywołanie funkcji losującej
       // if (typeof this.randomWord === 'undefined') {
-      //       this.randIndex();
+      //
       // }
 
-      if (this.state.score >= 10) {
-        this.setState({
-          scoreStatus: "Brawo! Jesteś geniuszem językowym :)"
-        });
-      } else if (this.state.score >= 5) {
-        this.setState({
-          scoreStatus: "Musisz się jeszcze trochę poduczyc..."
-        });
-      } else {
-        this.setState({
-          scoreStatus: "Weź sie za naukę człowieku!"
-        });
-      }
 
       if (this.state.score <= 0 && this.state.try > 0 || this.state.time <= 0) {
         return _react2.default.createElement(
@@ -28454,7 +28454,7 @@ var Game = function (_React$Component) {
             ),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'gameOver__opinion' },
               this.state.scoreStatus
             )
           ),
@@ -28510,6 +28510,108 @@ var Game = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Game;
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(10);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MainDisplayList = function (_React$Component) {
+  _inherits(MainDisplayList, _React$Component);
+
+  function MainDisplayList() {
+    _classCallCheck(this, MainDisplayList);
+
+    return _possibleConstructorReturn(this, (MainDisplayList.__proto__ || Object.getPrototypeOf(MainDisplayList)).apply(this, arguments));
+  }
+
+  _createClass(MainDisplayList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var listToDisp = [];
+      this.props.checkedLists.map(function (e, i) {
+        return listToDisp.push(_this2.props.data[e][0].list);
+      });
+
+      var listTitle = [];
+      var listElements = [];
+      for (var prop in this.props.data) {
+        if (this.props.checkedLists.indexOf(prop) >= 0) {
+          listTitle.push(this.props.data[prop][0].titlePL);
+          this.props.data[prop][0].list.forEach(function (e, i) {
+            listElements.push(e);
+          });
+        }
+      }
+      var counter1 = 0;
+      var counter2 = 0;
+      return _react2.default.createElement(
+        'div',
+        { className: 'mainDisplay__instructions' },
+        _react2.default.createElement(
+          'h1',
+          { className: 'mainDisplay__header' },
+          listTitle.join(" / ")
+        ),
+        _react2.default.createElement(
+          'table',
+          { className: 'mainDisplay__table' },
+          _react2.default.createElement(
+            'tbody',
+            { className: 'mainDisplay__tbody' },
+            listElements.map(function (e, i) {
+              return _react2.default.createElement(
+                'tr',
+                { className: 'mainDisplay__tableTR', key: i },
+                _react2.default.createElement(
+                  'td',
+                  { className: 'mainDisplay__tableTD' },
+                  e.wordPL
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { className: 'mainDisplay__tableTD' },
+                  '- ',
+                  e.wordES
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return MainDisplayList;
+}(_react2.default.Component);
+
+exports.default = MainDisplayList;
 
 /***/ })
 /******/ ]);

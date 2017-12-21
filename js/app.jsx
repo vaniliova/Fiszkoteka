@@ -45,16 +45,17 @@ class App extends React.Component{
         this.setState({
           data: data,
         })
-      console.log( data );
     });
   }
   render(){
-    console.log(this.state.listDef);
+    if (this.state.data === null) {
+      return null;
+    }
     return(
-        <Router history={hashHistory}>
-          <Route path='/' component={(props) => <Main add={this.addItemToList} remove={this.removeItemFromList} data={this.state.data} {...props} /> } />
-          <Route path='/game' component={(props) => <Game checkedLists={this.state.listDef} data={this.state.data} {...props} />} />
-        </Router>
+      <Router history={hashHistory}>
+        <Route path='/' component={(props) => <Main checkedLists={this.state.listDef} add={this.addItemToList} remove={this.removeItemFromList} data={this.state.data} {...props} /> } />
+        <Route path='/game' component={(props) => <Game checkedLists={this.state.listDef} data={this.state.data} {...props} />} />
+      </Router>
     )
   }
 }

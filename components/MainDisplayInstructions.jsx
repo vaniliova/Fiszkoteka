@@ -9,7 +9,7 @@ class MainDisplayInstructions extends React.Component {
         <ol className="mainDisplay--ol">
           <li>1. Stwórz listę fiszek lub wybierz gotową</li>
           <li>2. Zaznacz kilka list naraz by uczyc się wiecej!</li>
-          <li>3. Zaznacz kilka list naraz by uczyc się wiecej!</li>
+          <li>3. Graj!</li>
         </ol>
       </div>
     )

@@ -150,44 +150,44 @@
         "titleES": "EL TRANSPORTE",
         "list": [
           {
-            "wordPL": "Samochod",
-            "wordES": "El coche"
+            "wordPL": "Słońce",
+            "wordES": "El sol"
           },
           {
-            "wordPL": "Rower",
-            "wordES": "La bicicleta"
+            "wordPL": "Księżyc",
+            "wordES": "La luna"
           },
           {
-            "wordPL": "Samolot",
-            "wordES": "El avion"
+            "wordPL": "Chmura",
+            "wordES": "La nube"
           },
           {
-            "wordPL": "Statek",
-            "wordES": "El barco"
+            "wordPL": "Deszcz",
+            "wordES": "La lluvia"
           },
           {
-            "wordPL": "Autobus",
-            "wordES": "El autobus"
+            "wordPL": "Wiatr",
+            "wordES": "El viento"
           },
           {
-            "wordPL": "Pociąg",
-            "wordES": "El tram"
+            "wordPL": "Śnieg",
+            "wordES": "La nieve"
           },
           {
-            "wordPL": "Tramwaj",
-            "wordES": "La tramvia"
+            "wordPL": "Tęcza",
+            "wordES": "El arcoiris"
           },
           {
-            "wordPL": "Hulajnoga",
-            "wordES": "El patinete"
+            "wordPL": "Mgła",
+            "wordES": "La niebla"
           },
           {
-            "wordPL": "Deskorolka",
-            "wordES": "El monopatin"
+            "wordPL": "Burza",
+            "wordES": "La tormenta"
           },
           {
-            "wordPL": "Metro",
-            "wordES": "El metro"
+            "wordPL": "Ciepło",
+            "wordES": "El calor"
           }
         ]
       }
