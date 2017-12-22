@@ -25791,9 +25791,7 @@ var MainDisplayInstructions = function (_React$Component) {
           'div',
           { className: 'monster__position' },
           _react2.default.createElement('div', { className: 'monster' }),
-          _react2.default.createElement('div', { className: 'monster__hole' }),
-          _react2.default.createElement('div', { className: 'monster__holeDown' }),
-          _react2.default.createElement('div', { className: 'monster__hole__box' })
+          _react2.default.createElement('div', { className: 'monster__hole' })
         )
       );
     }

@@ -209,7 +209,6 @@ class Game extends React.Component {
           <Nav />
           <div className="gameOver">
             <div className="gameOver__info">GAME OVER!</div>
-
             <p className="gameOver__score">Twój wynik: {this.state.score}</p>
             <p className="gameOver__opinion">{this.state.scoreStatus}</p>
             <canvas className="confetti"></canvas>

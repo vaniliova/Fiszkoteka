@@ -1,46 +1,49 @@
+$bg: #007eed;
+$lightblue: #006ECE;
+$darkBlue: #00529B;
+$darkestBlue: #003D72;
+$green: #89E224;
+$greenHov: #75C11F;
+$font: #eaeef2;
+$btnShadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  background: #007eed;
+  background: $bg;
   background-image: url('../images/pinstripe-dark.png');
   font-family: 'Roboto', sans-serif;
 }
-
 .loading {
   text-align: center;
   font-size: 20px;
-  color: #eaeef2;
+  color: $font;
 }
-
 .backToMain__container {
   display: flex;
   justify-content: center;
-}
-
-.backToMain {
-  text-align: center;
-  font-size: 30px;
-  color: #eaeef2;
-  background: #89E224;
-  width: 400px;
-  height: 100px;
-  text-decoration: none;
-  padding: 20px;
-  line-height: 60px;
-  border-radius: 5px;
-  margin-top: 200px;
-  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  transition: background 0.5s ease;
-}
-
-.backToMain:hover {
-  background: #75C11F;
+  .backToMain {
+    text-align: center;
+    font-size: 30px;
+    color: $font;
+    background: $green;
+    width: 400px;
+    height: 100px;
+    text-decoration: none;
+    padding: 20px;
+    line-height: 60px;
+    border-radius: 5px;
+    margin-top: 200px;
+    -webkit-box-shadow: $btnShadow:;
+    -moz-box-shadow: $btnShadow:;
+    box-shadow: $btnShadow:;
+    transition: background 0.5s ease;
+  }
+  .backToMain:hover {
+    background: $greenHov;
+  }
 }
 .app {
   height: 100vh;
@@ -48,12 +51,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
+// LOGO ANIMATION
 @keyframes swing
 {
   15%
@@ -87,25 +85,27 @@ body {
       transform: rotate(0deg);
   }
 }
-
-.nav__logo {
-  color: #00529B;
-  font-size: 50px;
-  font-weight: bold;
-  padding: 30px;
-  font-family: 'Zilla Slab Highlight', cursive;
-  text-decoration: none;
-  animation: swing 1s linear alternate;
-}
-
-.nav__lang {
-  padding: 20px;
-}
-
-.nav__lang__flag {
-  width: 70px;
-  height: 50px;
-  padding: 10px;
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .nav__logo {
+    color: $darkBlue;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 30px;
+    font-family: 'Zilla Slab Highlight', cursive;
+    text-decoration: none;
+    animation: swing 1s linear alternate;
+  }
+  .nav__lang {
+    padding: 20px;
+    .nav__lang__flag {
+      width: 70px;
+      height: 50px;
+      padding: 10px;
+    }
+  }
 }
 
 .main {
@@ -114,53 +114,47 @@ body {
   display: flex;
   justify-content: center;
   flex-flow: wrap;
+  .main__lists, .main__display{
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    height: 440px;
+  }
+  .main__lists {
+    border-right: 2px solid $darkBlue;
+    .mainList__lists__category {
+      text-align:center;
+      color: $darkBlue;
+      font-weight: 800;
+      padding: 15px;
+    }
+  }
 }
 
 .mainList__lists__default--li {
   list-style: none;
-  color: #eaeef2;
+  color: $font;
   font-size: 14px;
   width: 270px;
-  background: #006ECE;
+  background: $lightblue;
   margin: 5px auto;
   padding: 5px;
   border-radius: 5px;
 }
-
 .mainList__lists__default--li:hover {
-  background: #0060B5;
+  background: $lightblue;
 }
-
 .mainList__lists__default--input {
   width: 20px;
   height: 20px;
   margin-right: 10px;
 }
-
 .mainList__lists__default--sup {
-  color: #003D72;
-}
-
-.main__lists, .main__display{
-  width: 600px;
-  display: flex;
-  justify-content: center;
-  height: 440px;
-}
-
-.main__lists {
-  border-right: 2px solid #00529B;
-}
-
-.mainList__lists__category {
-  text-align:center;
-  color: #00529B;
-  font-weight: 800;
-  padding: 15px;
+  color: $darkestBlue;
 }
 
 .main__playBtn {
-  background: #89E224;
+  background: $green;
   border-radius: 5px;
   width: 200px;
   height: 70px;
@@ -168,18 +162,16 @@ body {
   text-align: center;
   line-height: 70px;
   margin-top: 40px;
-  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: $btnShadow:;
+  -moz-box-shadow: $btnShadow:;
+  box-shadow: $btnShadow:;
   transition: background 0.5s ease;
 }
-
 .main__playBtn:hover {
-  background: #75C11F;
+  background: $greenHov;
 }
-
 .main__playBtn--btn {
-  color: #eaeef2;
+  color: $font;
   text-decoration: none;
   text-shadow: 0px 0px 2px #000000;
 }
@@ -194,7 +186,7 @@ body {
 .mainDisplay__instructions {
   padding: 30px;
   text-align: center;
-  color: #003D72;
+  color: $darkestBlue;
   max-height: 400px;
   overflow: auto;
 }
@@ -223,19 +215,19 @@ body {
   border: 0;
   background: transparent;
   text-align: center;
-  color: #eaeef2;
-  border-bottom: 2px solid #00529B;
+  color: $font;
+  border-bottom: 2px solid $darkBlue;
   outline: 0;
 }
 
 .mainList__user {
-  color: #eaeef2;
+  color: $font;
   font-size: 12px;
-  border-bottom: 1px solid #00529B;
+  border-bottom: 1px solid $darkBlue;
 }
 
 .footer {
-  background: #006ECE;
+  background: $lightblue;
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
@@ -246,20 +238,20 @@ body {
 }
 
 .footer__logo {
-  color: #00529B;
+  color: $darkBlue;
   font-size: 20px;
   font-weight: bold;
   font-family: 'Zilla Slab Highlight', cursive;
 }
 
 .footer__slogan {
-  color: #eaeef2;
+  color: $font;
   font-size: 16px;
   padding: 20px;
 }
 
 .footer__author {
-  color: #00529B;
+  color: $darkBlue;
   font-size: 25px;
   text-align: right;
   padding-right: 50px;
@@ -281,23 +273,23 @@ body {
   height: 500px;
   border-radius: 5px;
   margin: auto;
-  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: $btnShadow:;
+  -moz-box-shadow: $btnShadow:;
+  box-shadow: $btnShadow:;
 }
 
 .gameOver__info {
   text-align: center;
   padding: 70px;
   font-size: 70px;
-  color: #eaeef2;
+  color: $font;
 }
 
 .gameOver__score, .gameOver__opinion {
   text-align: center;
   padding: 30px;
   font-size: 30px;
-  color: #eaeef2;
+  color: $font;
 }
 
 .game__random {
@@ -308,7 +300,7 @@ body {
 }
 
 .game__random__header {
-  color: #eaeef2;
+  color: $font;
   font-size: 40px;
   text-align: center;
   padding: 70px;
@@ -320,32 +312,32 @@ body {
   border: 0;
   background: transparent;
   text-align: center;
-  color: #eaeef2;
-  border-bottom: 2px solid #00529B;
+  color: $font;
+  border-bottom: 2px solid $darkBlue;
   padding: 10px;
   font-size: 18px;
   outline: 0;
 }
 
 .game__random__btn {
-  background: #89E224;
+  background: $green;
   border-radius: 5px;
   width: 100px;
   height: 60px;
   font-size: 20px;
   line-height: 60px;
   border: 0;
-  color: #eaeef2;
+  color: $font;
   margin: 20px;
   outline: 0;
-  -webkit-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: $btnShadow:;
+  -moz-box-shadow: $btnShadow:;
+  box-shadow: $btnShadow:;
   transition: background 0.5s ease;
 }
 
 .game__random__btn:hover {
-  background: #75C11F;
+  background: $greenHov;
 }
 
 .game__info {
@@ -354,14 +346,16 @@ body {
 }
 
 .game__time, .game__score {
-  color: #eaeef2;
+  color: $font;
   padding: 20px;
   font-size: 20px;
 }
+
 @keyframes playX {
-      from {background-position-x: 0px;}
-      to {background-position-x: -710px;}
+  from {background-position-x: 0px;}
+  to {background-position-x: -710px;}
 }
+
 @keyframes playY {
   from {background-position-y: 0px;}
   to {background-position-y: -355px;}
@@ -379,6 +373,7 @@ body {
   right: 360px;
   z-index: 1;
 }
+
 .monster {
   margin: 0 auto;
   width: 118.333px;

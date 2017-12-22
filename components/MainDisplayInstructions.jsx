@@ -15,8 +15,6 @@ class MainDisplayInstructions extends React.Component {
         <div className="monster__position">
           <div className="monster"></div>
           <div className="monster__hole"></div>
-          <div className="monster__holeDown"></div>
-          <div className="monster__hole__box"></div>
         </div>
       </div>
     )
