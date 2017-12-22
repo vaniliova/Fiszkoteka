@@ -12,6 +12,12 @@ class MainDisplayInstructions extends React.Component {
           <li>3. Przetestuj swoje umiejętnosci w grze!</li>
           <li>* Przetłumacz jak najszybciej wylosowane słówko. Pamiętaj, że czas ucieka! Za każdą poprawną odpowiedź dostaniesz 2 pkt za każdą złą -1!</li>
         </ol>
+        <div className="monster__position">
+          <div className="monster"></div>
+          <div className="monster__hole"></div>
+          <div className="monster__holeDown"></div>
+          <div className="monster__hole__box"></div>
+        </div>
       </div>
     )
   }

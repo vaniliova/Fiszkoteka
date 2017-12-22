@@ -25786,6 +25786,14 @@ var MainDisplayInstructions = function (_React$Component) {
             null,
             '* Przet\u0142umacz jak najszybciej wylosowane s\u0142\xF3wko. Pami\u0119taj, \u017Ce czas ucieka! Za ka\u017Cd\u0105 poprawn\u0105 odpowied\u017A dostaniesz 2 pkt za ka\u017Cd\u0105 z\u0142\u0105 -1!'
           )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'monster__position' },
+          _react2.default.createElement('div', { className: 'monster' }),
+          _react2.default.createElement('div', { className: 'monster__hole' }),
+          _react2.default.createElement('div', { className: 'monster__holeDown' }),
+          _react2.default.createElement('div', { className: 'monster__hole__box' })
         )
       );
     }
@@ -28162,6 +28170,8 @@ var _Footer = __webpack_require__(116);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _reactRouter = __webpack_require__(61);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28190,7 +28200,8 @@ var Game = function (_React$Component) {
       score: 0,
       try: 0,
       scoreStatus: "Weź sie za naukę człowieku!"
-    }, _this.checkAnswer = function () {
+    }, _this.checkAnswer = function (e) {
+      e.preventDefault();
       var bg = document.querySelector('body');
       var bgGame = document.querySelector('.game');
       var footer = document.querySelector('.footer');
@@ -28198,9 +28209,12 @@ var Game = function (_React$Component) {
       if (_this.state.answer !== "") {
         if (_this.state.answer.toLowerCase() === _this.words[_this.randomWord].wordES.toLowerCase()) {
           bg.style.background = "#89E224";
+          bg.style.transition = "background 0.1s linear";
           footer.style.background = "#89E224";
+          footer.style.transition = "background 0.1s linear";
           bg.style.backgroundImage = "url('../images/pinstripe-dark.png')";
           bgGame.style.background = "#89E224";
+          bgGame.style.transition = "background 0.1s linear";
           var changeBg = setTimeout(function () {
             bg.style.background = "";
             footer.style.background = "";
@@ -28223,7 +28237,7 @@ var Game = function (_React$Component) {
           }, 400);
 
           _this.setState({
-            score: _this.state.score - 1,
+            score: _this.state.score === 0 ? 0 : _this.state.score - 1,
             try: _this.state.try + 1
           });
         }
@@ -28286,8 +28300,82 @@ var Game = function (_React$Component) {
           _this3.setState({
             time: _this3.state.time - 1000
           });
-        } else {}
+        }
       }, 1000);
+    }
+  }, {
+    key: 'canvas',
+    value: function canvas() {
+      //canvas
+      if (this.state.score >= 10) {
+        var randomColor = function randomColor() {
+          var colors = ['#f00', '#0f0', '#00f', '#0ff', '#f0f', '#ff0'];
+          return colors[Math.floor(Math.random() * colors.length)];
+        };
+
+        var _update = function _update() {
+          var now = Date.now(),
+              dt = now - lastUpdateTime;
+          for (var i = pieces.length - 1; i >= 0; i--) {
+            var p = pieces[i];
+            if (p.y > canvas.height) {
+              pieces.splice(i, 1);
+              continue;
+            }
+            p.y += p.gravity * dt;
+            p.rotation += p.rotationSpeed * dt;
+          }
+          while (pieces.length < numberOfPieces) {
+            pieces.push(new _Piece(Math.random() * canvas.width, -20));
+          }
+          lastUpdateTime = now;
+          setTimeout(_update, 1);
+        };
+
+        var _draw = function _draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          pieces.forEach(function (p) {
+            ctx.save();
+            ctx.fillStyle = p.color;
+            ctx.translate(p.x + p.size / 2, p.y + p.size / 2);
+            ctx.rotate(p.rotation);
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+            ctx.restore();
+          });
+          requestAnimationFrame(_draw);
+        };
+
+        var _Piece = function _Piece(x, y) {
+          this.x = x;
+          this.y = y;
+          this.size = (Math.random() * 0.5 + 0.75) * 15;
+          this.gravity = (Math.random() * 0.5 + 0.75) * 0.1;
+          this.rotation = Math.PI * 2 * Math.random();
+          this.rotationSpeed = Math.PI * 2 * (Math.random() - 0.5) * 0.001;
+          this.color = randomColor();
+        };
+
+        var canvas = document.querySelector('.confetti');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.position = "fixed";
+        canvas.style.left = 0;
+        canvas.style.top = 0;
+        canvas.style.bottom = 0;
+        canvas.style.right = 0;
+
+        var ctx = canvas.getContext('2d');
+        var pieces = [];
+        var numberOfPieces = 50;
+        var lastUpdateTime = Date.now();
+
+        while (pieces.length < numberOfPieces) {
+          pieces.push(new _Piece(Math.random() * canvas.width, Math.random() * canvas.height));
+        }
+        _update();
+        _draw();
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -28295,13 +28383,27 @@ var Game = function (_React$Component) {
       clearInterval(this.time);
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.state.score >= 10 && this.state.try > 0 || this.state.time <= 0) {
+        this.canvas();
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      if (this.props.data === null || typeof this.randomWord === 'undefined') {
+      var _this4 = this;
+
+      console.log(this.props.data, this.randomWord, this.props.checkedLists.length);
+      if (this.props.data === null || typeof this.randomWord === 'undefined' || this.props.checkedLists.length === 0) {
         return _react2.default.createElement(
-          'p',
-          { className: 'loading' },
-          'Loading...'
+          'div',
+          { className: 'backToMain__container' },
+          _react2.default.createElement(
+            _reactRouter.Link,
+            { to: '/', className: 'backToMain' },
+            'Wr\xF3\u0107 do strony g\u0142\xF3wnej!'
+          )
         );
       }
 
@@ -28328,11 +28430,13 @@ var Game = function (_React$Component) {
               'p',
               { className: 'gameOver__opinion' },
               this.state.scoreStatus
-            )
+            ),
+            _react2.default.createElement('canvas', { className: 'confetti' })
           ),
           _react2.default.createElement(_Footer2.default, null)
         );
       }
+
       return _react2.default.createElement(
         'div',
         { className: 'app' },
@@ -28365,10 +28469,14 @@ var Game = function (_React$Component) {
               { className: 'game__random__header' },
               this.words[this.randomWord].wordPL
             ),
-            _react2.default.createElement('input', { className: 'game__random__input', onChange: this.compareValue, type: 'text', value: this.state.answer }),
+            _react2.default.createElement('input', { className: 'game__random__input', onChange: this.compareValue, type: 'text', value: this.state.answer, onKeyPress: function onKeyPress(e) {
+                if (e.key === 'Enter') {
+                  _this4.checkAnswer(e);
+                }
+              } }),
             _react2.default.createElement(
               'button',
-              { className: 'game__random__btn', onClick: this.checkAnswer },
+              { type: 'button', className: 'game__random__btn', onClick: this.checkAnswer },
               'Sprawd\u017A'
             )
           )
